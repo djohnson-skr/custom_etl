@@ -15,6 +15,7 @@ total_rows = 500
 time_now = datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
 fake = Faker()
 start_time = datetime.now() - timedelta(hours=0, minutes=1)
+shoe_type = ['sport', 'casual', 'dress', 'boot', 'athletic']
 
 # for write_to_s3()
 file_dir = '/Users/ArminHammer/Documents/custom_etl/csv_data/'
@@ -41,11 +42,15 @@ def get_purchase_date():
   date = date.replace(microsecond=0)
   return date
 
+def get_shoe_type():
+  return random.choice(shoe_type)
+
 def gather_data():
-  data = [get_first_name(), get_last_name(), get_shoe(), get_price(), get_credit_card(), get_purchase_date()]
+  data = [get_first_name(), get_last_name(), get_shoe(), get_price(), get_credit_card(), get_purchase_date(), get_shoe_type()]
   return data
 
 with open('/Users/ArminHammer/Documents/custom_etl/csv_data/purchases' + '_' + time_now + '.csv', 'w') as f:
+  print("written file")
   writer = csv.writer(f)
   writer.writerow(header)
   for i in range(0, total_rows):
