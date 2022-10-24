@@ -17,7 +17,7 @@ fake = Faker()
 start_time = datetime.now() - timedelta(hours=0, minutes=1)
 
 # for write_to_s3()
-file_dir = '/Users/ArminHammer/Documents/etl/csv_data/'
+file_dir = '/Users/ArminHammer/Documents/custom_etl/csv_data/'
 bucket_name = 'snowpipe-armin'
 
 def get_first_name():
@@ -45,7 +45,7 @@ def gather_data():
   data = [get_first_name(), get_last_name(), get_shoe(), get_price(), get_credit_card(), get_purchase_date()]
   return data
 
-with open('/Users/ArminHammer/Documents/etl/csv_data/purchases' + '_' + time_now + '.csv', 'w') as f:
+with open('/Users/ArminHammer/Documents/custom_etl/csv_data/purchases' + '_' + time_now + '.csv', 'w') as f:
   writer = csv.writer(f)
   writer.writerow(header)
   for i in range(0, total_rows):
